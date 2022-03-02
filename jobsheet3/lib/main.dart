@@ -6,13 +6,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  get children => null;
-
+  TextEditingController etInput = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -25,25 +23,53 @@ class MyApp extends StatelessWidget {
         body: Container(
           margin: EdgeInsets.all(8),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextFormField(
                 keyboardType: TextInputType.number,
+                controller: etInput,
                 decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
                     hintText: 'Masukkan Suhu Dalam Celcius'),
               ),
               Row(
-                children: const <Widget>[
-                  Expanded(
-                    child:
-                        Text('Suhu dalam Kelvin', textAlign: TextAlign.center),
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        "Kelvin",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        "0",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child:
-                        Text('Suhu dalam Reamor', textAlign: TextAlign.center),
+                  Column(
+                    children: [
+                      Text(
+                        "Reamur",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        "0",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
                 ],
-              )
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Colors.lightBlue,
+                  textColor: Colors.white,
+                  child: Text("Konversi suhu"),
+                ),
+              ),
             ],
           ),
         ),
