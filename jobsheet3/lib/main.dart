@@ -5,8 +5,28 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   TextEditingController etInput = new TextEditingController();
+
+  double inputUser = 0;
+
+  double kelvin = 0;
+
+  double reamur = 0;
+
+  konversi() {
+    setState(() {
+      inputUser = double.parse(etInput.text);
+      kelvin = inputUser + 273;
+      reamur = 4 / 5 * inputUser;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +61,7 @@ class MyApp extends StatelessWidget {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        "0",
+                        '$kelvin',
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -53,7 +73,7 @@ class MyApp extends StatelessWidget {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        "0",
+                        '$reamur',
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -64,7 +84,7 @@ class MyApp extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: konversi,
                   color: Colors.lightBlue,
                   textColor: Colors.white,
                   child: Text("Konversi suhu"),
